@@ -18,7 +18,9 @@ fn give_hint(number: i16, number_to_guess: i16) {
 fn valid(number_one: i32, number_two: i32) -> bool {
     return number_one < 1000 && number_one > 0 && number_two < 1000 && number_two > 0;
 }
-
+/*
+FIXME: split this method into multiple methods
+*/
 fn print_prompt_with_number() {
     let mut rng = rand::thread_rng();
     let mut start: i32 = rng.gen_range(10..250);
