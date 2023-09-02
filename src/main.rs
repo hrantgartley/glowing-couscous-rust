@@ -11,9 +11,20 @@ fn give_hint(number: i32, number_to_guess: i32) {
     }
 }
 
-/*
-FIXME: split this method into multiple methods
-*/
+fn loop_until_done(mut sim: i32, num: i32) {
+    while sim != num {
+        let mut count = 1;
+        count += 1;
+        sim = generate_simulated_random_num();
+        give_hint(sim, num);
+        println!("Guessing again...");
+        println!("The number guessed was {}", sim);
+        if sim == num {
+            println!("Correctly guessed {} in {} tries", num, count)
+        }
+    }
+}
+
 fn generate_random_num() -> i32 {
     let mut rng = rand::thread_rng();
     rng.gen_range(10..250)
@@ -24,21 +35,9 @@ fn print_prompt_with_number() {
     let mut start = generate_random_num();
     let mut end = generate_random_num();
     let number_to_guess = generate_random_num();
-    let mut simulated_random_num = rng.gen_range(10..250);
-    let mut count = 0;
-
+    let simulated_random_num = rng.gen_range(10..250);
+    loop_until_done(simulated_random_num, number_to_guess);
     validate_bounds(&mut start, &mut end);
-
-    while simulated_random_num != number_to_guess {
-        count += 1;
-        simulated_random_num = generate_simulated_random_num();
-        give_hint(simulated_random_num, number_to_guess);
-        println!("Guessing again...");
-        println!("The number guessed was {}", simulated_random_num);
-        if simulated_random_num == number_to_guess {
-            println!("Correctly guessed {} in {} tries", number_to_guess, count)
-        }
-    }
 }
 
 fn validate_bounds(start: &mut i32, end: &mut i32) {
