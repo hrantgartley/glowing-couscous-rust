@@ -1,7 +1,8 @@
 use rand::prelude::*;
 
 fn main() {
-    print_prompt_with_number();
+    welcome_message();
+    print_prompt_with_number()
 }
 fn give_hint(number: i32, number_to_guess: i32) {
     match number.cmp(&number_to_guess) {
@@ -10,7 +11,10 @@ fn give_hint(number: i32, number_to_guess: i32) {
         std::cmp::Ordering::Equal => println!("You have guessed the number correctly"),
     }
 }
-
+/*
+FIXME: error that incorrectly calculates the number of attempts it takes to guess a number
+FIXME: also at the end it shows reroll prompt
+*/
 fn loop_until_done(mut sim: i32, num: i32) {
     while sim != num {
         let mut count = 1;
@@ -59,4 +63,9 @@ fn validate_bounds(start: &mut i32, end: &mut i32) {
 fn generate_simulated_random_num() -> i32 {
     let mut rng = rand::thread_rng();
     rng.gen_range(10..250)
+}
+
+fn welcome_message() -> () {
+    println!("Welcome to the guessing game...");
+    println!("---------------------------------");
 }
