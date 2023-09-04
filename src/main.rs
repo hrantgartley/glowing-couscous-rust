@@ -1,17 +1,23 @@
+use std::time::Instant;
+
 use rand::prelude::*;
 
 fn main() -> () {
+    let now = Instant::now();
     let number_to_guess = generate_random_num();
     let valid = validate_bounds(number_to_guess);
     if valid {
         welcome_message();
         play_game(number_to_guess);
+        exit_message();
     } else {
         println!("Not valid");
     }
+    let time_e = now.elapsed();
+    println!("Time elapsed: {:?}", time_e);
 }
 
-fn give_hint(number: i32, number_to_guess: i32) -> () {
+fn give_hint(number: i32, number_to_guess: i32) {
     match number.cmp(&number_to_guess) {
         std::cmp::Ordering::Less => println!("Your guess is too low!"),
         std::cmp::Ordering::Greater => println!("Your guess is too high!"),
@@ -19,7 +25,7 @@ fn give_hint(number: i32, number_to_guess: i32) -> () {
     }
 }
 
-fn play_game(number_to_guess: i32) -> () {
+fn play_game(number_to_guess: i32) {
     let mut count = 0;
 
     loop {
@@ -36,7 +42,7 @@ fn play_game(number_to_guess: i32) -> () {
 }
 
 fn validate_bounds(number: i32) -> bool {
-    number <= 250 && number >= 10
+    (10..=250).contains(&number)
 }
 
 fn get_user_guess() -> i32 {
@@ -63,7 +69,11 @@ fn generate_random_num() -> i32 {
     rng.gen_range(10..250)
 }
 
-fn welcome_message() -> () {
+fn welcome_message() {
     println!("Welcome to the guessing game...");
     println!("---------------------------------");
+}
+
+fn exit_message() {
+    println!("Thanks for playing the guessing game.")
 }
