@@ -1,12 +1,12 @@
 use rand::prelude::*;
 
-fn main() {
+fn main() -> () {
     welcome_message();
     let number_to_guess = generate_random_num();
     play_game(number_to_guess);
 }
 
-fn give_hint(number: i32, number_to_guess: i32) {
+fn give_hint(number: i32, number_to_guess: i32) -> () {
     match number.cmp(&number_to_guess) {
         std::cmp::Ordering::Less => println!("Your guess is too low!"),
         std::cmp::Ordering::Greater => println!("Your guess is too high!"),
@@ -14,7 +14,7 @@ fn give_hint(number: i32, number_to_guess: i32) {
     }
 }
 
-fn play_game(number_to_guess: i32) {
+fn play_game(number_to_guess: i32) -> () {
     let mut count = 0;
 
     loop {
@@ -54,7 +54,7 @@ fn generate_random_num() -> i32 {
     rng.gen_range(10..250)
 }
 
-fn welcome_message() {
+fn welcome_message() -> () {
     println!("Welcome to the guessing game...");
     println!("---------------------------------");
 }
