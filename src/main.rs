@@ -1,6 +1,6 @@
-use std::time::Instant;
-
 use rand::prelude::*;
+use std::io::Write;
+use std::time::Instant;
 
 fn main() -> () {
     let now = Instant::now();
@@ -47,9 +47,10 @@ fn validate_bounds(number: i32) -> bool {
 
 fn get_user_guess() -> i32 {
     loop {
-        println!("Enter your guess:");
-        let mut guess = String::new();
+        print!("Enter your guess: ");
+        std::io::stdout().flush().expect("Failed to flush stdout"); // Ensure the prompt is displayed immediately
 
+        let mut guess = String::new();
         std::io::stdin()
             .read_line(&mut guess)
             .expect("Failed to read line");
