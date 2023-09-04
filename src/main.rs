@@ -1,9 +1,14 @@
 use rand::prelude::*;
 
 fn main() -> () {
-    welcome_message();
     let number_to_guess = generate_random_num();
-    play_game(number_to_guess);
+    let valid = validate_bounds(number_to_guess);
+    if valid {
+        welcome_message();
+        play_game(number_to_guess);
+    } else {
+        println!("Not valid");
+    }
 }
 
 fn give_hint(number: i32, number_to_guess: i32) -> () {
@@ -28,6 +33,10 @@ fn play_game(number_to_guess: i32) -> () {
             break;
         }
     }
+}
+
+fn validate_bounds(number: i32) -> bool {
+    number <= 250 && number >= 10
 }
 
 fn get_user_guess() -> i32 {
