@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 use rand::prelude::*;
 use std::io::Write;
 use std::time::Instant;
@@ -77,4 +78,40 @@ fn welcome_message() {
 
 fn exit_message() {
     println!("Thanks for playing the guessing game.")
+}
+
+fn generate_odd() -> i32 {
+    let mut rng = rand::thread_rng();
+    let odd = rng.gen_range(1..100);
+    if odd % 2 != 0 {
+        odd
+    } else {
+        odd + 1
+    }
+}
+
+fn generate_even() -> i32 {
+    let mut rng = rand::thread_rng();
+    let even = rng.gen_range(1..100);
+    if even % 2 == 0 {
+        even
+    } else {
+        even + 1
+    }
+}
+
+fn hint_even(number: i32) {
+    if number % 2 == 0 {
+        println!("The number is even");
+    } else {
+        println!("The number is odd");
+    }
+}
+
+fn limited_guesses() {
+    let mut tries = 0;
+    while tries < 5 {
+        tries += 1;
+        println!("You have {} tries left", 5 - tries);
+    }
 }
