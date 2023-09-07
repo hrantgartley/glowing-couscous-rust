@@ -1,4 +1,5 @@
 #![allow(dead_code)]
+
 use rand::prelude::*;
 use std::io::Write;
 use std::time::Instant;
