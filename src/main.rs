@@ -16,7 +16,13 @@ fn main() -> () {
         println!("Not valid");
     }
     let time_e = now.elapsed();
-    println!("Time elapsed: {:?}", time_e);
+    // convert times_e to minutes if it is greater than 60 seconds
+    if time_e.as_secs() > 60 {
+        let minutes = time_e.as_secs() / 60;
+        println!("Time elapsed: {} minutes", minutes);
+    } else {
+        println!("Time elapsed: {} seconds", time_e.as_secs());
+    }
 }
 
 fn give_hint(number: i32, number_to_guess: i32) {
@@ -91,7 +97,7 @@ fn generate_odd() -> i32 {
     }
 }
 
-fn generate_even() -> i32 {
+fn generate_even() -> u32 {
     let mut rng = rand::thread_rng();
     let even = rng.gen_range(1..100);
     if even % 2 == 0 {
