@@ -8,6 +8,8 @@ fn main() -> () {
     let now = Instant::now();
     let number_to_guess = generate_random_num();
     let valid = validate_bounds(number_to_guess);
+    let time_e = now.elapsed();
+
     if valid {
         welcome_message();
         play_game(number_to_guess);
@@ -15,7 +17,6 @@ fn main() -> () {
     } else {
         println!("Not valid");
     }
-    let time_e = now.elapsed();
     // convert times_e to minutes if it is greater than 60 seconds
     if time_e.as_secs() > 60 {
         let minutes = time_e.as_secs() / 60;
