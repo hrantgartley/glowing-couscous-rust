@@ -4,7 +4,7 @@ use rand::prelude::*;
 use std::io::Write;
 use std::time::Instant;
 
-fn main() -> () {
+fn main() {
     let now = Instant::now();
     let number_to_guess = generate_random_num();
     let valid = validate_bounds(number_to_guess);
