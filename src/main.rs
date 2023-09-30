@@ -28,9 +28,15 @@ fn main() {
 
 fn give_hint(number: i32, number_to_guess: i32) {
     match number.cmp(&number_to_guess) {
-        std::cmp::Ordering::Less => println!("Your guess is too low!"),
-        std::cmp::Ordering::Greater => println!("Your guess is too high!"),
-        std::cmp::Ordering::Equal => println!("You have guessed the number correctly"),
+        std::cmp::Ordering::Less => {
+            println!("Your guess is too low!")
+        }
+        std::cmp::Ordering::Greater => {
+            println!("Your guess is too high!")
+        }
+        std::cmp::Ordering::Equal => {
+            println!("You have guessed the number correctly")
+        }
     }
 }
 
@@ -78,7 +84,6 @@ fn generate_random_num() -> i32 {
     let mut rng = rand::thread_rng();
     rng.gen_range(10..250)
 }
-
 fn welcome_message() {
     println!("Welcome to the guessing game...");
     println!("---------------------------------");
